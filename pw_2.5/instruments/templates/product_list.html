@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Склад Інструментів</title>
+    <style>
+        body { font-family: sans-serif; padding: 20px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        .btn { padding: 5px 10px; text-decoration: none; color: white; border-radius: 4px; }
+        .btn-add { background-color: green; }
+        .btn-edit { background-color: #008CBA; }
+        .btn-del { background-color: #f44336; }
+        .btn-gen { background-color: orange; }
+    </style>
+</head>
+<body>
+    <h1>🎸 Склад музичних інструментів</h1>
+    
+    <a href="{% url 'product-create' %}" class="btn btn-add">+ Додати інструмент</a>
+    <a href="/replenish/5/" class="btn btn-gen">🎲 Згенерувати 5 шт.</a>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Назва</th>
+                <th>Тип</th>
+                <th>Бренд</th>
+                <th>Матеріал</th>
+                <th>Ціна</th>
+                <th>Дії</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for p in products %}
+            <tr>
+                <td>{{ p.id }}</td>
+                <td>{{ p.name }}</td>
+                <td>{{ p.instrument_type }}</td>
+                <td>{{ p.brand }}</td>
+                <td>{{ p.material }}</td>
+                <td>${{ p.price }}</td>
+                <td>
+                    <a href="{% url 'product-edit' p.id %}" class="btn btn-edit">Edit</a>
+                    <a href="{% url 'product-delete' p.id %}" class="btn btn-del">Del</a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="7">Склад порожній. Додайте товари або згенеруйте їх.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

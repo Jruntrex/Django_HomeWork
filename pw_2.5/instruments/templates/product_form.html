@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head><title>Інструмент</title></head>
+<body style="font-family: sans-serif; padding: 20px;">
+    <h2>{% if object %}Редагувати{% else %}Додати{% endif %} інструмент</h2>
+    
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Зберегти</button>
+    </form>
+    
+    <br>
+    <a href="{% url 'product-list' %}">Назад</a>
+</body>
+</html>

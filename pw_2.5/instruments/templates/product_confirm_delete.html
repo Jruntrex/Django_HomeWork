@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+<head><title>Видалення</title></head>
+<body style="font-family: sans-serif; padding: 20px; text-align: center;">
+    <h2>Ви впевнені, що хочете видалити "{{ object.name }}"?</h2>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" style="background-color: red; color: white;">Так, видалити</button>
+        <a href="{% url 'product-list' %}">Скасувати</a>
+    </form>
+</body>
+</html>

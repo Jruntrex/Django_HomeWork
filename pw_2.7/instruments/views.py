@@ -10,20 +10,20 @@ import random
 # 1. READ: Список товарів
 class ProductListView(ListView):
     model = Product
-    template_name = 'product_list.html' # вказуємо назву шаблону
-    context_object_name = 'products'    # як звертатись до списку в HTML
+    template_name = 'product_list.html' 
+    context_object_name = 'products'
 
 # 2. CREATE: Створення товару
 class ProductCreateView(CreateView):
     model = Product
     template_name = 'product_form.html'
     fields = ['name', 'instrument_type', 'brand', 'material', 'price']
-    success_url = reverse_lazy('product-list') # куди перенаправити після успіху
+    success_url = reverse_lazy('product-list')
 
 # 3. UPDATE: Редагування товару
 class ProductUpdateView(UpdateView):
     model = Product
-    template_name = 'product_form.html' # використовуємо ту ж форму, що і для створення
+    template_name = 'product_form.html'
     fields = ['name', 'instrument_type', 'brand', 'material', 'price']
     success_url = reverse_lazy('product-list')
 
@@ -33,7 +33,7 @@ class ProductDeleteView(DeleteView):
     template_name = 'product_confirm_delete.html'
     success_url = reverse_lazy('product-list')
 
-# === ФУНКЦІОНАЛЬНИЙ VIEW (для авто-генерації) ===
+# === ФУНКЦІОНАЛЬНИЙ VIEW ===
 def replenish(request, count):
     brands = ['Fender', 'Gibson', 'Yamaha', 'Ibanez', 'Roland', 'Moog']
     types = ['Гітара', 'Синтезатор', 'Барабани', 'Скрипка', 'Бас-гітара']

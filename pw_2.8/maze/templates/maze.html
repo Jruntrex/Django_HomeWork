@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Maze Solver</title>
+    <style>
+        body { font-family: sans-serif; text-align: center; background-color: #f4f4f4; padding: 20px; }
+        
+        /* Панель керування */
+        .controls { background: white; padding: 20px; border-radius: 8px; display: inline-block; margin-bottom: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        input { padding: 5px; width: 60px; }
+        button { padding: 8px 15px; cursor: pointer; border-radius: 4px; border: none; color: white; }
+        .btn-gen { background: #007bff; }
+        .btn-solve { background: #28a745; }
+
+        /* Стилі таблиці (лабіринту) */
+        table { margin: 0 auto; border-collapse: collapse; background: white; border: 2px solid #333; }
+        td {
+            width: 25px; height: 25px;
+            border: 1px solid #ccc;
+            text-align: center;
+            font-size: 12px;
+        }
+
+        /* КОЛЬОРИ КЛІТИНОК - Це найважливіше */
+        .wall { background-color: #333; }        /* Стіна (X) */
+        .path { background-color: #4caf50; }     /* Шлях (P) - Зелений */
+        .start { background-color: #007bff; color: white; } /* Старт (S) */
+        .finish { background-color: #dc3545; color: white; } /* Фініш (F) */
+        .empty { background-color: #fff; }       /* Пусто (_) */
+
+    </style>
+</head>
+<body>
+
+    <h1>🔍 Генератор Лабіринту + DFS</h1>
+
+    <div class="controls">
+        <form action="/maze/" method="POST">
+            {% csrf_token %}
+            <label>Розмір: <input type="number" name="size" value="{{ size|default:10 }}" min="5" max="50"></label>
+            <label>Стіни (0-0.9): <input type="number" name="density" value="{{ density|default:0.2 }}" step="0.1" min="0" max="0.9"></label>
+            <button type="submit" class="btn-gen">🎲 Новий</button>
+        </form>
+        
+        {% if matrix %}
+        <br>
+        <form action="/maze/solve/" method="POST">
+            {% csrf_token %}
+            <button type="submit" class="btn-solve">🚀 Знайти шлях</button>
+        </form>
+        {% endif %}
+    </div>
+
+    {% if matrix %}
+        <table>
+            {% for row in matrix %}
+            <tr>
+                {% for cell in row %}
+                    <td class="
+                        {% if cell == 'X' %} wall
+                        {% elif cell == 'P' %} path
+                        {% elif cell == 'S' %} start
+                        {% elif cell == 'F' %} finish
+                        {% else %} empty
+                        {% endif %}
+                    ">
+                        {% if cell == 'S' %}S{% elif cell == 'F' %}F{% endif %}
+                    </td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </table>
+
+        {% if solved and not has_path %}
+            <h2 style="color: red; margin-top: 20px;">❌ Шляху до виходу не існує!</h2>
+        {% endif %}
+    {% endif %}
+
+</body>
+</html>

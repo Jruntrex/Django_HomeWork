@@ -1,0 +1,12 @@
+[
+    {"model": "warehouse.product", "pk": 1, "fields": {"name": "Catan", "min_players": 3, "max_players": 4, "genre": "Strategy", "price": "1800.00"}},
+    {"model": "warehouse.product", "pk": 2, "fields": {"name": "Monopoly", "min_players": 2, "max_players": 6, "genre": "Family", "price": "1200.00"}},
+    {"model": "warehouse.product", "pk": 3, "fields": {"name": "Dixit", "min_players": 3, "max_players": 6, "genre": "Party", "price": "1100.00"}},
+    {"model": "warehouse.product", "pk": 4, "fields": {"name": "Ticket to Ride", "min_players": 2, "max_players": 5, "genre": "Strategy", "price": "1950.00"}},
+    {"model": "warehouse.product", "pk": 5, "fields": {"name": "Carcassonne", "min_players": 2, "max_players": 5, "genre": "Strategy", "price": "950.00"}},
+    {"model": "warehouse.product", "pk": 6, "fields": {"name": "Uno", "min_players": 2, "max_players": 10, "genre": "Card Game", "price": "250.00"}},
+    {"model": "warehouse.product", "pk": 7, "fields": {"name": "Exploding Kittens", "min_players": 2, "max_players": 5, "genre": "Party", "price": "600.00"}},
+    {"model": "warehouse.product", "pk": 8, "fields": {"name": "Scythe", "min_players": 1, "max_players": 5, "genre": "Complex Strategy", "price": "3500.00"}},
+    {"model": "warehouse.product", "pk": 9, "fields": {"name": "Pandemic", "min_players": 2, "max_players": 4, "genre": "Cooperative", "price": "1400.00"}},
+    {"model": "warehouse.product", "pk": 10, "fields": {"name": "Dungeons & Dragons Starter Set", "min_players": 2, "max_players": 6, "genre": "RPG", "price": "1000.00"}}
+]
